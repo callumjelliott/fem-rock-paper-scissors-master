@@ -74,4 +74,144 @@ a {
   color: inherit;
 }
 
+:root {
+  --button-size: 15.2rem;
+  --button-size-result: 29.2rem;
+  --button-size-result-winner: 19.2rem;
+  --button-size-result-placeholder: 22.4rem;
+  --button-size-hover: 1rem;
+  --button-center: calc(var(--button-size) / 2);
+  --button-border: 2.3rem;
+  --button-border-played: 3.5rem;
+  --button-border-colour-rock: #db2e4d;
+  --button-border-colour-scissors: #eb9f0e;
+  --button-border-colour-paper: #4664f4;
+  --button-border-shadow-colour-rock-bottom: #9d1634;
+  --button-border-shadow-colour-scissors-bottom: #c76c1b;
+  --button-border-shadow-colour-paper-bottom: #2a45c2;
+  --button-border-shadow-colour-top: #babfd4;
+  --button-border-shadow-height: 0.9rem;
+}
+
+body {
+  background: radial-gradient(circle at top, #1f3757, #131537);
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.game-start {
+  position: relative;
+}
+
+.hand {
+  background-color: #ffffff;
+  height: var(--button-size);
+  width: var(--button-size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.hand::after {
+  visibility: hidden;
+  position: absolute;
+  content: ".";
+  box-shadow: 0px 0px 0px 100px rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  z-index: -1;
+  width: var(--button-size-hover);
+  height: var(--button-size-hover);
+}
+
+.game-start .hand:hover::after {
+  visibility: visible;
+}
+
+.scissors {
+  border: var(--button-border) solid var(--button-border-colour-scissors);
+  box-shadow: 0px var(--button-border-shadow-height) inset var(--button-border-shadow-colour-top), 0px var(--button-border-shadow-height) var(--button-border-shadow-colour-scissors-bottom);
+}
+.scissors.played {
+  border: var(--button-border-played) solid var(--button-border-colour-scissors);
+}
+
+.rock {
+  border: var(--button-border) solid var(--button-border-colour-rock);
+  box-shadow: 0px var(--button-border-shadow-height) inset var(--button-border-shadow-colour-top), 0px var(--button-border-shadow-height) var(--button-border-shadow-colour-rock-bottom);
+}
+.rock.played {
+  border: var(--button-border-played) solid var(--button-border-colour-rock);
+}
+
+.paper {
+  border: var(--button-border) solid var(--button-border-colour-paper);
+  box-shadow: 0px var(--button-border-shadow-height) inset var(--button-border-shadow-colour-top), 0px var(--button-border-shadow-height) var(--button-border-shadow-colour-paper-bottom);
+}
+.paper.played {
+  border: var(--button-border-played) solid var(--button-border-colour-paper);
+}
+
+.game-start > .paper {
+  position: absolute;
+  top: calc(0rem - var(--button-center));
+  left: calc(0rem - var(--button-center));
+}
+
+.game-start > .scissors {
+  position: absolute;
+  top: calc(0rem - var(--button-center));
+  right: calc(0rem - var(--button-center));
+}
+
+.game-start > .rock {
+  position: absolute;
+  bottom: calc(0rem - var(--button-center));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.game-show-hands {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.game-show-hands > .user-hand {
+  margin-right: 7rem;
+}
+.game-show-hands .hand {
+  height: var(--button-size-result);
+  width: var(--button-size-result);
+  cursor: initial;
+}
+.game-show-hands .hand::after {
+  visibility: hidden;
+  position: absolute;
+  content: ".";
+  box-shadow: 0px 0px 0px 100px rgba(255, 255, 255, 0.05), 0px 0px 0px 150px rgba(255, 255, 255, 0.05), 0px 0px 0px 200px rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  z-index: -1;
+  width: var(--button-size-result-winner);
+  height: var(--button-size-result-winner);
+}
+.game-show-hands .hand.winner::after {
+  visibility: visible;
+}
+.game-show-hands .played-placeholder {
+  height: var(--button-size-result-placeholder);
+  width: var(--button-size-result-placeholder);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.hide-me {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */
